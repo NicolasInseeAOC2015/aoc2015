@@ -13,11 +13,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import utils.FlatFileReader;
 
-public class Day1 {
+public final class Day1 {
 
 	public static void main(String[] args) throws IOException {
 		
-		part1();
+		part2();
 		
 		
 		
@@ -48,9 +48,31 @@ public class Day1 {
 		File file=FlatFileReader.getFileByName("2015_input1_day1");
 		String uneLigne = FileUtils.readFileToString(file,Charset.forName("UTF-8"));
 		
-	
+		int position=trouverPosition(uneLigne);
+		
+		System.out.println("position:"+position);
 		
 		
+	}
+
+	protected static int trouverPosition(String uneLigne) {
+		int position=0;
+		int etage=0;
+		
+		while (etage > -1) {
+			String evolution=uneLigne.substring(0, 1);
+			position=position +1;
+			if (evolution.equals("(")) {
+				etage=etage+1;
+			} else {
+				etage=etage-1;
+
+			}
+			uneLigne=uneLigne.substring(1);
+
+
+		}
+		return position;
 	}
 
 }
